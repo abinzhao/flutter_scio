@@ -1,0 +1,12 @@
+android:
+  app_name: "Android App Name"
+ios:
+  app_name: "iOS App Name"
+linux:
+  app_name: "Linux App Name"
+macos:
+  app_name: "macOS App Name"
+web:
+  app_name: "Web App Name"
+windows:
+  app_name: "Windows App Name"

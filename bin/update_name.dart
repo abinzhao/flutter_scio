@@ -1,13 +1,12 @@
 import 'dart:io';
 import 'dart:core';
-import 'package:logger/logger.dart';
 import 'package:yaml/yaml.dart';
 import './contants.dart';
 
-var logger = Logger();
+
 void main(List<String> arguments) async {
   try {
-    logger.d("读取配置中...");
+    print("✅开始读取配置...");
     var yamlString = File('config.yaml').readAsStringSync();
     var yaml = loadYaml(yamlString);
     final androidAppName = yaml['android']?['app_name'];
@@ -25,7 +24,7 @@ void main(List<String> arguments) async {
         'android:label="$androidAppName"',
       );
       await file.writeAsString(replacedString);
-      logger.i("Android应用名称配置成功.");
+      print("✅ Android应用名称配置成功.");
     }
 
     if (iosAppName != null) {
@@ -43,7 +42,7 @@ void main(List<String> arguments) async {
           .replaceAll(bundleNameRegExp,
               '<key>CFBundleName</key>\n<string>$iosAppName</string>');
       await iosFile.writeAsString(newContent);
-      logger.i("Android应用名称配置成功.");
+      print("✅ IOS应用名称配置成功.");
     }
 
     if (macosAppName != null) {}
@@ -54,6 +53,6 @@ void main(List<String> arguments) async {
 
     if (webAppName != null) {}
   } catch (e) {
-    logger.e("配置出错: $e");
+    print("❌ 配置出错: $e");
   }
 }
